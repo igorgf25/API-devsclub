@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import skillSchema from "./skillSchema.js";
 
 const vagaSchema = mongoose.Schema(
     {
@@ -8,7 +7,7 @@ const vagaSchema = mongoose.Schema(
             ref: 'Empresa',
             require: [true, 'A vaga deve possuir uma empresa']
         },
-        skills: [skillSchema] ,
+        skills: [String] ,
         ativa: {
             type: Boolean,
             default: true

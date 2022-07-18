@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import skillSchema from './skillSchema.js';
 import estudoSchema from './estudoSchema.js';
 import experienciaSchema from './experienciaSchema.js';
 
@@ -45,7 +44,7 @@ const perfilSchema = mongoose.Schema({
     ],
   },
   linkedin: String,
-  skills: [skillSchema],
+  skills: [String],
   estudos: [estudoSchema],
   experiencia: [experienciaSchema],
 });
