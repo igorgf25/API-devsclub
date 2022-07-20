@@ -4,6 +4,7 @@ import programadorRouter from './routes/programadorRoutes.js';
 import empresaRouter from './routes/empresaRoutes.js';
 import perfilRouter from './routes/perfilRoutes.js';
 import vagaRouter from './routes/vagaRoutes.js';
+import matchRouter from './routes/matchRoutes.js';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use('/programador', programadorRouter);
 app.use('/empresa', empresaRouter);
 app.use('/perfil', perfilRouter);
 app.use('/vaga', vagaRouter);
+app.use('/match', matchRouter);
 
 // Rota padrão
 app.get('/api', (req, res) => {
