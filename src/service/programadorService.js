@@ -65,6 +65,8 @@ const createProgramador = catchAsync(async (req, res, next) => {
 const updateProgramador = handler.updateOne(Programador);
 const deleteProgramador = handler.deleteOne(Programador);
 const loginProgramador = login(Programador);
+const recoverPassword = handler.recoverPassword(Programador);
+const resetPassword = handler.resetPassword(Programador);
 
 export {
   getAll,
@@ -73,4 +75,6 @@ export {
   createProgramador,
   getOne,
   loginProgramador,
+  recoverPassword,
+  resetPassword
 };

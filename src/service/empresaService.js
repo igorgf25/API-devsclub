@@ -22,5 +22,7 @@ const getAll = handler.getAll(Empresa);
 const updateEmpresa = handler.updateOne(Empresa);
 const deleteEmpresa = handler.deleteOne(Empresa);
 const loginEmpresa = login(Empresa);
+const recoverPassword = handler.recoverPassword(Empresa);
+const resetPassword = handler.resetPassword(Empresa);
 
-export { getAll, updateEmpresa, deleteEmpresa, createEmpresa, loginEmpresa };
+export { getAll, updateEmpresa, deleteEmpresa, createEmpresa, loginEmpresa, recoverPassword, resetPassword };

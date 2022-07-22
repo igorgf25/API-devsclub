@@ -6,6 +6,14 @@ const empresaSchema = mongoose.Schema(
       type: String,
       required: [true, 'A empresa deve informar a senha'],
     },
+    password_reset_token: {
+      type: String,
+      select: false
+    },
+    password_reset_expires: {
+      type: Date,
+      select: false
+    },
     email: {
       type: String,
       unique: true,

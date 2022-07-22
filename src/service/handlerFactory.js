@@ -1,9 +1,83 @@
 import catchAsync from '../utils/catchAsync.js';
 import AppError from '../utils/appError.js';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken'
+import crypto from 'crypto';
+import transporter from '../utils/nodemailer.js';
 
+const resetPassword = (Model) =>
+  catchAsync(async (req, res, next) => {
+    const { email, token, senha } = req.body;
 
+    const user = await Model.findOne({ email }).select(
+      '+password_reset_expires password_reset_token'
+    );
+
+    if (!user) {
+      return res.status(400).send({ error: 'Usuario não encontrado' });
+    }
+
+    if (token !== user.password_reset_token) {
+      return res.status(400).send({ error: 'Token invalido' });
+    }
+
+    const now = new Date();
+
+    if (now > user.password_reset_expires) {
+      return res.status(400).send({ error: 'Token expirado' });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    user.senha = await bcrypt.hash(senha, salt);
+    await user.save();
+
+    res.send();
+  });
+
+const recoverPassword = (Model) =>
+  catchAsync(async (req, res, next) => {
+    const email = req.params.email;
+
+    try {
+      const user = await Model.findOne({ email });
+
+      if (!user) {
+        return res.status(400).send({ error: 'User not found' });
+      }
+
+      const token = crypto.randomBytes(20).toString('hex');
+
+      const now = new Date();
+      now.setHours(now.getHours() + 1);
+
+      await Model.findByIdAndUpdate(user.id, {
+        $set: {
+          password_reset_token: token,
+          password_reset_expires: now,
+        },
+      });
+
+      transporter.sendMail(
+        {
+          from: 'contato.devsclub@outlook.com',
+          to: user.email,
+          subject: 'Recuperação de senha',
+          text: `Esqueceu sua senha?
+           utilize o token a seguir para recuperar sua senha ${token}`,
+        },
+        (err) => {
+          if (err) {
+            return res.status(400).send({
+              error:
+                'Não foi possível enviar o email de recuperação de senha: ' +
+                err.message,
+            });
+          }
+
+          return res.send();
+        }
+      );
+    } catch (err) {}
+  });
 
 const deleteOne = (Model) =>
   catchAsync(async (req, res, next) => {
@@ -85,4 +159,4 @@ const getAll = (Model) =>
     });
   });
 
-export { getAll, getOne, createOne, updateOne, deleteOne };
+export { getAll, getOne, createOne, updateOne, deleteOne, recoverPassword,  resetPassword};

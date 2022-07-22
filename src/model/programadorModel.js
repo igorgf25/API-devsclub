@@ -7,6 +7,14 @@ const programadorSchema = new mongoose.Schema(
       type: String,
       required: [true, "O programador deve informar a senha"],
     },
+    password_reset_token: {
+      type: String,
+      select: false
+    },
+    password_reset_expires: {
+      type: Date,
+      select: false
+    },
     email: {
       type: String,
       unique: true,
@@ -14,7 +22,8 @@ const programadorSchema = new mongoose.Schema(
     },
     roles: {
       type: Number,
-      default: 1984
+      default: 1984,
+      select: false
     },
   },
   {
