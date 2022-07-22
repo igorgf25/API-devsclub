@@ -1,4 +1,5 @@
 import * as handler from './handlerFactory.js';
+import login from './authService.js';
 import Empresa from '../model/empresaModel.js';
 import catchAsync from '../utils/catchAsync.js';
 import bcrypt from 'bcryptjs';
@@ -20,5 +21,6 @@ const createEmpresa = catchAsync(async (req, res, next) => {
 const getAll = handler.getAll(Empresa);
 const updateEmpresa = handler.updateOne(Empresa);
 const deleteEmpresa = handler.deleteOne(Empresa);
+const loginEmpresa = login(Empresa);
 
-export { getAll, updateEmpresa, deleteEmpresa, createEmpresa };
+export { getAll, updateEmpresa, deleteEmpresa, createEmpresa, loginEmpresa };

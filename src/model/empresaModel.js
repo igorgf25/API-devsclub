@@ -1,29 +1,33 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const empresaSchema = mongoose.Schema(
   {
     senha: {
       type: String,
-      required: [true, "A empresa deve informar a senha"],
+      required: [true, 'A empresa deve informar a senha'],
     },
     email: {
       type: String,
       unique: true,
-      required: [true, "A empresa deve informar a senha"],
+      required: [true, 'A empresa deve informar a senha'],
     },
     telefone: {
       type: String,
       unique: true,
-      required: [true, "A empresa deve informar um telefone para contato"],
+      required: [true, 'A empresa deve informar um telefone para contato'],
     },
     nome: {
       type: String,
-      required: [true, "A empresa  deve informar seu nome"],
+      required: [true, 'A empresa  deve informar seu nome'],
     },
     cnpj: {
       type: String,
       unique: true,
-      required: [true, "A empresa  deve informar seu CNPJ"],
+      required: [true, 'A empresa  deve informar seu CNPJ'],
+    },
+    roles: {
+      type: Number,
+      default: 2001
     },
   },
   {
@@ -32,6 +36,6 @@ const empresaSchema = mongoose.Schema(
   }
 );
 
-const Empresa = mongoose.model("Empresa", empresaSchema);
+const Empresa = mongoose.model('Empresa', empresaSchema);
 
 export default Empresa;

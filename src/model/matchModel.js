@@ -21,6 +21,10 @@ const matchSchema = mongoose.Schema({
     type: mongoose.Types.ObjectId,
     require: [true, 'Um match deve possuir uma vaga'],
   },
+  super_like: {
+    type: Boolean,
+    require: [true, 'Um match deve possuir saber se é um super like ou não'],
+  }
 });
 
 const Match = mongoose.model('Match', matchSchema);

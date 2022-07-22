@@ -5,6 +5,8 @@ import empresaRouter from './routes/empresaRoutes.js';
 import perfilRouter from './routes/perfilRoutes.js';
 import vagaRouter from './routes/vagaRoutes.js';
 import matchRouter from './routes/matchRoutes.js';
+import authRouter from './routes/authRotes.js';
+import verifyJWT from './middleware/verifyJWT.js';
 
 const app = express();
 
@@ -13,6 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.disable('x-powered-by');
 app.use('/', express.static('public'));
+app.use('', authRouter);
+app.use(verifyJWT),
 app.use('/programador', programadorRouter);
 app.use('/empresa', empresaRouter);
 app.use('/perfil', perfilRouter);

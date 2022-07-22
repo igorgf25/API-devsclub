@@ -11,6 +11,10 @@ const adminitradroSchema = new mongoose.Schema(
       unique: true,
       required: [true, "O administrador deve informar a senha"],
     },
+    roles: {
+      type: Number,
+      default: 5150
+    },
   },
   {
     toJSON: { virtuals: true },

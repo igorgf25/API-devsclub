@@ -1,4 +1,5 @@
 import * as handler from './handlerFactory.js';
+import login from './authService.js';
 import Programador from '../model/programadorModel.js';
 import catchAsync from '../utils/catchAsync.js';
 import mongoose from 'mongoose';
@@ -28,7 +29,7 @@ const getAll = catchAsync(async (req, res, next) => {
 
 const getOne = catchAsync(async (req, res, next) => {
   const doc = await Programador.aggregate([
-    { $match: { _id: ObjectId(`${req.params.id}`)}},
+    { $match: { _id: ObjectId(`${req.params.id}`) } },
     {
       $lookup: {
         from: 'perfils',
@@ -63,5 +64,13 @@ const createProgramador = catchAsync(async (req, res, next) => {
 
 const updateProgramador = handler.updateOne(Programador);
 const deleteProgramador = handler.deleteOne(Programador);
+const loginProgramador = login(Programador);
 
-export { getAll, updateProgramador, deleteProgramador, createProgramador, getOne };
+export {
+  getAll,
+  updateProgramador,
+  deleteProgramador,
+  createProgramador,
+  getOne,
+  loginProgramador,
+};

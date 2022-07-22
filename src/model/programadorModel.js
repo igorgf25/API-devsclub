@@ -11,7 +11,11 @@ const programadorSchema = new mongoose.Schema(
       type: String,
       unique: true,
       required: [true, "O programador deve informar a senha"],
-    }
+    },
+    roles: {
+      type: Number,
+      default: 1984
+    },
   },
   {
     toJSON: { virtuals: true },
