@@ -28,6 +28,10 @@ const empresaSchema = mongoose.Schema(
       type: String,
       required: [true, 'A empresa  deve informar seu nome'],
     },
+    descricao: {
+      type: String,
+      require: [true, 'A empresa deve possuir uma descrição']
+    },
     cnpj: {
       type: String,
       unique: true,

@@ -5,17 +5,16 @@ import jwt from 'jsonwebtoken'
 const login = (Model) => catchAsync(async (req, res, next) => {
     const {usuario, senha} = req.body
     if (!usuario || !senha) return res.status(400).json({ 'message': 'Email e senha são obrigatórios.' });
-    const usuarioDB = await Model.find({email: `${usuario}`})
+    const usuarioDB = await Model.findOne({email: `${usuario}`})
     if (!usuarioDB) return res.sendStatus(401);
-    console.log(usuarioDB[0]._id)
-    const match = await bcrypt.compare(senha, usuarioDB[0].senha)
+    const match = await bcrypt.compare(senha, usuarioDB.senha)
   
     if (match) {
-      const roles = usuarioDB[0].roles
+      const roles = usuarioDB.roles
   
       const accessToken = jwt.sign({
         "UserInfo": {
-          "email": usuarioDB[0].email,
+          "email": usuarioDB.email,
           "roles": roles
         }
       },
