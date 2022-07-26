@@ -1,22 +1,22 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const frameworkSchema = mongoose.Schema(
-  {
-    nome: {
-      type: String,
-      require: [true, "O framework deve possuir um nome"],
+    {
+        nome: {
+            type: String,
+            require: [true, 'O framework deve possuir um nome'],
+        },
+        linguagem: {
+            type: String,
+            require: [true, 'O framework deve possuir uma linguagem'],
+        },
     },
-    linguagem: {
-      type: String,
-      require: [true, "O framework deve possuir uma linguagem"]
+    {
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true },
     },
-  },
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
 );
 
-const Framework = mongoose.model("Framework", frameworkSchema);
+const Framework = mongoose.model('Framework', frameworkSchema);
 
 export default Framework;

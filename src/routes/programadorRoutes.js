@@ -6,8 +6,20 @@ import ROLES_LIST from '../config/ROLES_LIST.js';
 const router = express.Router();
 
 router.get('/getall', verifyRoles(ROLES_LIST.Admin), service.getAll);
-router.put('/update/:id', verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Programador), service.updateProgramador);
-router.delete('/delete/:id', verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Programador), service.deleteProgramador);
-router.get('/getone/:id', verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Programador), service.getOne);
+router.put(
+    '/update/:id',
+    verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Programador),
+    service.updateProgramador,
+);
+router.delete(
+    '/delete/:id',
+    verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Programador),
+    service.deleteProgramador,
+);
+router.get(
+    '/getone/:id',
+    verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Programador),
+    service.getOne,
+);
 
 export default router;

@@ -17,7 +17,7 @@ const vagaSchema = mongoose.Schema(
             require: [true, 'A vaga deve possuir uma empresa']
         },
         skills: [String] ,
-        ativa: {
+        status: {
             type: Boolean,
             default: true
         }

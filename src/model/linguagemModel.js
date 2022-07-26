@@ -1,19 +1,19 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const linguagemSchema = mongoose.Schema(
-  {
-    nome: {
-      type: String,
-      require: [true, "A linguagem deve possuir um nome"],
+    {
+        nome: {
+            type: String,
+            require: [true, 'A linguagem deve possuir um nome'],
+        },
+        classificacao: [String],
     },
-    classificacao: [String],
-  },
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
+    {
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true },
+    },
 );
 
-const Linguagem = mongoose.model("Linguagem", linguagemSchema);
+const Linguagem = mongoose.model('Linguagem', linguagemSchema);
 
 export default Linguagem;

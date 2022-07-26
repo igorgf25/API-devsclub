@@ -5,17 +5,17 @@ import catchAsync from '../utils/catchAsync.js';
 import bcrypt from 'bcryptjs';
 
 const createEmpresa = catchAsync(async (req, res, next) => {
-  const salt = await bcrypt.genSalt(10);
-  req.body.senha = await bcrypt.hash(req.body.senha, salt);
+    const salt = await bcrypt.genSalt(10);
+    req.body.senha = await bcrypt.hash(req.body.senha, salt);
 
-  const doc = await Empresa.create(req.body);
+    const doc = await Empresa.create(req.body);
 
-  res.status(201).json({
-    status: 'success',
-    data: {
-      data: doc,
-    },
-  });
+    res.status(201).json({
+        status: 'success',
+        data: {
+            data: doc,
+        },
+    });
 });
 
 const getAll = handler.getAll(Empresa);
@@ -25,4 +25,12 @@ const loginEmpresa = login(Empresa);
 const recoverPassword = handler.recoverPassword(Empresa);
 const resetPassword = handler.resetPassword(Empresa);
 
-export { getAll, updateEmpresa, deleteEmpresa, createEmpresa, loginEmpresa, recoverPassword, resetPassword };
+export {
+    getAll,
+    updateEmpresa,
+    deleteEmpresa,
+    createEmpresa,
+    loginEmpresa,
+    recoverPassword,
+    resetPassword,
+};

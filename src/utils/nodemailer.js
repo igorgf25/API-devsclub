@@ -1,23 +1,14 @@
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: 'gmail',
     auth: {
-        user: "contato.devsclub@gmail.com",
-        pass: "lyzkkryokstexndd"
+        user: 'contato.devsclub@gmail.com',
+        pass: 'lyzkkryokstexndd',
     },
     tls: {
-        rejectUnauthorized: false
-    }
-})
-
-
-// exemplo construção de email
-// const options = {
-//     from: "contato.devsclub@outlook.com",
-//     to: "",
-//     subject: "",
-//     text: ""
-// }
+        rejectUnauthorized: false,
+    },
+});
 
 export default transporter;
