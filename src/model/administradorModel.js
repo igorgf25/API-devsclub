@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const adminitradroSchema = new mongoose.Schema(
+const administradorSchema = new mongoose.Schema(
     {
         senha: {
             type: String,
@@ -22,6 +22,6 @@ const adminitradroSchema = new mongoose.Schema(
     },
 );
 
-const Administrador = mongoose.model('Programador', adminitradroSchema);
+const Administrador = mongoose.model('Administrador', administradorSchema);
 
 export default Administrador;

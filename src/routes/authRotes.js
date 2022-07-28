@@ -1,6 +1,7 @@
 import express from 'express';
 import * as serviceEmpresa from '../service/empresaService.js';
 import * as serviceProgramador from '../service/programadorService.js';
+import * as serviceAdministrador from '../service/administradorService.js';
 
 const router = express.Router();
 
@@ -16,5 +17,7 @@ router.post(
     serviceProgramador.recoverPassword,
 );
 router.post('/programador/resetpassword', serviceProgramador.resetPassword);
+
+router.post('/administrador/login', serviceAdministrador.loginAdministrador);
 
 export default router;

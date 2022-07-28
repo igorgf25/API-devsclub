@@ -6,7 +6,7 @@ import ROLES_LIST from '../config/ROLES_LIST.js';
 const router = express.Router();
 
 router.get('/getall', verifyRoles(ROLES_LIST.Admin), service.getAll);
-router.get('/getstack/:stack', verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Programador), service.getStack);
+router.get('/getstack/:stack', verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Programador, ROLES_LIST.Empresa), service.getStack);
 router.post(
     '/create',
     verifyRoles(ROLES_LIST.Admin),

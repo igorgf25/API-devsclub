@@ -8,6 +8,7 @@ import matchRouter from './routes/matchRoutes.js';
 import authRouter from './routes/authRotes.js';
 import linguagemRouter from './routes/linguagemRoutes.js'
 import frameworkRouter from './routes/frameworkRoutes.js'
+import administradorRouter from './routes/administradorRoutes.js'
 import verifyJWT from './middleware/verifyJWT.js';
 
 const app = express();
@@ -26,6 +27,7 @@ app.use('/vaga', vagaRouter);
 app.use('/match', matchRouter);
 app.use('/linguagem', linguagemRouter);
 app.use('/framework', frameworkRouter);
+app.use('/administrador', administradorRouter);
 
 // Rota padrão
 app.get('/api', (req, res) => {
