@@ -23,7 +23,6 @@ const programadorSchema = new mongoose.Schema(
         roles: {
             type: Number,
             default: 1984,
-            select: false,
         },
     },
     {

@@ -1,7 +1,7 @@
 import express from 'express';
 import * as service from '../service/frameworkService.js';
 import verifyRoles from '../middleware/verifyRoles.js';
-import ROLES_LIST from '../config/ROLES_LIST.js';
+import ROLES_LIST from '../config/roles_list.js';
 
 const router = express.Router();
 
